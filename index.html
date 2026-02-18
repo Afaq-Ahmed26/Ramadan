@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramadan Mubarak! 🌙</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Shooting stars */
+        .shooting-star {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, #fff, transparent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff, 0 0 20px #f9d71c;
+            animation: shoot 3s linear infinite;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translateX(0) translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+            20% {
+                transform: translateX(150px) translateY(150px) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(150px) translateY(150px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        /* Animated clouds */
+        .cloud {
+            position: fixed;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: drift linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes drift {
+            from { transform: translateX(-200px); }
+            to { transform: translateX(calc(100vw + 200px)); }
+        }
+
+        /* Ramadan lanterns */
+        .lantern {
+            position: fixed;
+            width: 60px;
+            height: 100px;
+            z-index: 5;
+            animation: swing 3s ease-in-out infinite;
+        }
+
+        .lantern-left {
+            top: -20px;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .lantern-right {
+            top: -20px;
+            right: 10%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        .lantern svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 10px rgba(255, 200, 0, 0.5));
+        }
+
+        /* Welcome text */
+        .welcome-text {
+            position: fixed;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 5;
+            animation: fadeInDown 2s ease;
+        }
+
+        .welcome-text h2 {
+            color: #f9d71c;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(249, 215, 28, 0.5);
+        }
+
+        .welcome-text p {
+            color: #fff;
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+
+        /* Crescent decoration */
+        .crescent-top {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4rem;
+            z-index: 5;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 10px #f9d71c); }
+            50% { filter: drop-shadow(0 0 30px #f9d71c); }
+        }
+
+        /* Stars background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            background: radial-gradient(circle, rgba(249, 215, 28, 0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 2;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Moon */
+        .moon {
+            position: fixed;
+            top: 50px;
+            right: 50px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f9d71c 0%, #f5a623 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(249, 215, 28, 0.5);
+            z-index: 1;
+        }
+
+        /* Envelope Container */
+        .envelope-container {
+            position: relative;
+            cursor: pointer;
+            z-index: 10;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+
+        .envelope {
+            width: 300px;
+            height: 200px;
+            background: linear-gradient(135deg, #c9a227 0%, #b8941f 50%, #9a7b1a 100%);
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 110px solid #d4af37;
+            transform-origin: top;
+            transition: transform 0.5s ease;
+            z-index: 5;
+        }
+
+        .envelope.open::before {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .envelope::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid #b8941f;
+            border-right: 150px solid #b8941f;
+            border-bottom: 100px solid #a6851c;
+            border-radius: 0 0 10px 10px;
+            z-index: 4;
+        }
+
+        .envelope-label {
+            position: absolute;
+            z-index: 6;
+            color: #fff;
+            font-size: 1.2rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Letter */
+        .letter-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 90%;
+            max-width: 500px;
+            z-index: 60;
+            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .letter-container.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .letter {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff 100%);
+            padding: 25px 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            text-align: center;
+            max-height: 90vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .letter h1 {
+            color: #1a1a2e;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .letter p {
+            color: #333;
+            line-height: 1.6;
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        .decorative {
+            font-size: 2.5rem;
+            margin: 15px 0;
+        }
+
+        /* Eidi Question Section */
+        .eidi-section {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px dashed #c9a227;
+        }
+
+        .eidi-question {
+            color: #1a1a2e;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .letter-content {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .typewriter-text {
+            display: inline;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            min-height: 60px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(17, 153, 142, 0.4);
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(17, 153, 142, 0.6);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(235, 51, 73, 0.4);
+            position: relative;
+        }
+
+        /* Fireworks Canvas */
+        #fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 15;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Click hint */
+        .click-hint {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            white-space: nowrap;
+        }
+
+        /* Celebration message */
+        .celebration-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 70;
+            display: none;
+        }
+
+        .celebration-container.show {
+            display: block;
+        }
+
+        .celebration-message {
+            padding: 30px 50px;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            box-shadow: 0 10px 40px rgba(17, 153, 142, 0.5);
+            text-align: center;
+            min-width: 300px;
+            max-width: 90%;
+        }
+
+        .typewriter-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.5rem;
+            background-color: #fff;
+            margin-left: 5px;
+            animation: blink 0.7s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .envelope {
+                width: 250px;
+                height: 170px;
+            }
+
+            .envelope::before {
+                border-left-width: 125px;
+                border-right-width: 125px;
+                border-top-width: 90px;
+            }
+
+            .envelope::after {
+                border-left-width: 125px;
+                border-right-width: 125px;
+                border-bottom-width: 85px;
+            }
+
+            .letter {
+                padding: 25px;
+            }
+
+            .letter h1 {
+                font-size: 1.5rem;
+            }
+
+            .letter p {
+                font-size: 1rem;
+            }
+
+            .moon {
+                width: 50px;
+                height: 50px;
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Stars Background -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Moon -->
+    <div class="moon"></div>
+
+    <!-- Crescent Top -->
+    <div class="crescent-top">☪️</div>
+
+    <!-- Welcome Text -->
+    <div class="welcome-text">
+        <h2>✨ Ramadan Kareem ✨</h2>
+        <p>A special message awaits you...</p>
+    </div>
+
+    <!-- Lanterns -->
+    <div class="lantern lantern-left">
+        <svg viewBox="0 0 60 100">
+            <line x1="30" y1="0" x2="30" y2="15" stroke="#f9d71c" stroke-width="2"/>
+            <ellipse cx="30" cy="40" rx="20" ry="30" fill="#f9d71c" opacity="0.8"/>
+            <ellipse cx="30" cy="40" rx="15" ry="22" fill="#fff9e6" opacity="0.6"/>
+            <ellipse cx="30" cy="75" rx="8" ry="10" fill="#f9d71c" opacity="0.7"/>
+            <line x1="30" y1="85" x2="30" y2="95" stroke="#f9d71c" stroke-width="2"/>
+        </svg>
+    </div>
+    <div class="lantern lantern-right">
+        <svg viewBox="0 0 60 100">
+            <line x1="30" y1="0" x2="30" y2="15" stroke="#f9d71c" stroke-width="2"/>
+            <ellipse cx="30" cy="40" rx="20" ry="30" fill="#f9d71c" opacity="0.8"/>
+            <ellipse cx="30" cy="40" rx="15" ry="22" fill="#fff9e6" opacity="0.6"/>
+            <ellipse cx="30" cy="75" rx="8" ry="10" fill="#f9d71c" opacity="0.7"/>
+            <line x1="30" y1="85" x2="30" y2="95" stroke="#f9d71c" stroke-width="2"/>
+        </svg>
+    </div>
+
+    <!-- Fireworks Canvas -->
+    <canvas id="fireworks"></canvas>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Envelope -->
+    <div class="envelope-container" id="envelopeContainer">
+        <div class="envelope" id="envelope">
+            <span class="envelope-label">🌙 Ramadan Mubarak! 🌙</span>
+        </div>
+        <div class="click-hint">Click to open ✨</div>
+    </div>
+
+    <!-- Letter -->
+    <div class="letter-container" id="letterContainer">
+        <div class="letter">
+            <h1>🌙 Ramadan Mubarak! 🌙</h1>
+            <div class="decorative">✨🕌✨</div>
+            <div class="letter-content" id="letterContent">
+                <p class="typewriter-paragraph" data-text="Assalamualaikum, Dear Zainab,"></p>
+                <p class="typewriter-paragraph" data-text="May this holy month bring you peace, happiness, and countless blessings. May your prayers be answered and your days be filled with joy and prosperity.🌼"></p>
+                <p class="typewriter-paragraph" data-text="May your followers grow to five figures before Eid, InshaAllah Ameen 🌙✨🤲"></p>
+                <p class="typewriter-paragraph" data-text="Wishing you a Ramadan filled with love, laughter, and beautiful moments with family and friends. 🤲"></p>
+                <div class="decorative">🌟💫🌟</div>
+
+                <div class="eidi-section" id="eidiSection" style="opacity: 0; visibility: hidden; transition: opacity 0.5s ease;">
+                    <p class="eidi-question">Kya aap iss Eid par mujhay eidi dōgi? 🎁</p>
+                    <div class="buttons">
+                        <button class="btn btn-yes" id="yesBtn">Yes! ☺️</button>
+                        <button class="btn btn-no" id="noBtn">No 🥲</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Celebration Message (appears after Yes) -->
+    <div class="celebration-container" id="celebrationContainer">
+        <div class="celebration-message">
+            <span id="celebrationText"></span><span class="typewriter-cursor"></span>
+        </div>
+    </div>
+
+    <!-- Audio for No button -->
+    <audio id="noMusic" preload="auto" playsinline>
+        <source src="./nhi.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Create stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = Math.random() * 3 + 1 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 2 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        createStars();
+
+        // Create shooting stars
+        function createShootingStars() {
+            for (let i = 0; i < 5; i++) {
+                const shootingStar = document.createElement('div');
+                shootingStar.className = 'shooting-star';
+                shootingStar.style.left = Math.random() * 80 + '%';
+                shootingStar.style.top = Math.random() * 50 + '%';
+                shootingStar.style.animationDelay = Math.random() * 3 + i * 0.5 + 's';
+                document.body.appendChild(shootingStar);
+            }
+        }
+        createShootingStars();
+
+        // Create floating clouds
+        function createClouds() {
+            for (let i = 0; i < 3; i++) {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                cloud.style.width = Math.random() * 150 + 100 + 'px';
+                cloud.style.height = Math.random() * 60 + 40 + 'px';
+                cloud.style.top = Math.random() * 30 + 10 + '%';
+                cloud.style.animationDuration = Math.random() * 20 + 30 + 's';
+                cloud.style.animationDelay = Math.random() * 10 + 's';
+                document.body.appendChild(cloud);
+            }
+        }
+        createClouds();
+
+        // Create floating particles
+        function createParticles() {
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 20 + 10 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDuration = Math.random() * 5 + 5 + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Typewriter effect
+        function typeWriterEffect() {
+            const paragraphs = document.querySelectorAll('.typewriter-paragraph');
+            const letterContent = document.getElementById('letterContent');
+            const eidiSection = document.getElementById('eidiSection');
+            
+            // Show letter content with fade in
+            setTimeout(() => {
+                letterContent.style.opacity = '1';
+            }, 300);
+
+            let currentParagraph = 0;
+
+            function typeParagraph(index) {
+                if (index >= paragraphs.length) {
+                    // All paragraphs done, show eidi section
+                    setTimeout(() => {
+                        eidiSection.style.opacity = '1';
+                        eidiSection.style.visibility = 'visible';
+                    }, 500);
+                    return;
+                }
+
+                const paragraph = paragraphs[index];
+                const text = paragraph.getAttribute('data-text');
+                paragraph.innerHTML = '<span class="typewriter-text"></span>';
+                const textSpan = paragraph.querySelector('.typewriter-text');
+                
+                let charIndex = 0;
+                const typingDelay = 40;
+                
+                function typeChar() {
+                    if (charIndex < text.length) {
+                        textSpan.textContent += text.charAt(charIndex);
+                        charIndex++;
+                        setTimeout(typeChar, typingDelay);
+                    } else {
+                        // Move to next paragraph after a short delay
+                        setTimeout(() => {
+                            typeParagraph(index + 1);
+                        }, 300);
+                    }
+                }
+                typeChar();
+            }
+
+            // Start typing from first paragraph
+            setTimeout(() => {
+                typeParagraph(0);
+            }, 500);
+        }
+
+        // DOM Elements
+        const envelopeContainer = document.getElementById('envelopeContainer');
+        const envelope = document.getElementById('envelope');
+        const letterContainer = document.getElementById('letterContainer');
+        const overlay = document.getElementById('overlay');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const noMusic = document.getElementById('noMusic');
+        const celebrationContainer = document.getElementById('celebrationContainer');
+        const fireworksCanvas = document.getElementById('fireworks');
+        const ctx = fireworksCanvas.getContext('2d');
+
+        // Audio debug listeners
+        noMusic.addEventListener('loadeddata', () => console.log('Audio loaded successfully!'));
+        noMusic.addEventListener('error', (e) => console.log('Audio load error:', e));
+        noMusic.addEventListener('canplaythrough', () => console.log('Audio can play through!'));
+
+        // Open envelope
+        envelopeContainer.addEventListener('click', () => {
+            // Initialize audio on first user interaction
+            noMusic.load();
+
+            // Hide decorative elements
+            document.querySelector('.welcome-text').style.display = 'none';
+            document.querySelector('.lantern-left').style.display = 'none';
+            document.querySelector('.lantern-right').style.display = 'none';
+            document.querySelector('.crescent-top').style.display = 'none';
+
+            envelope.classList.add('open');
+            setTimeout(() => {
+                overlay.classList.add('show');
+                letterContainer.classList.add('show');
+                envelopeContainer.style.display = 'none';
+                // Start typewriter effect
+                typeWriterEffect();
+            }, 500);
+        });
+
+        // No button - run away
+        noBtn.addEventListener('mouseover', moveButton);
+        noBtn.addEventListener('mouseenter', moveButton);
+
+        function moveButton() {
+            // Play music - try multiple times to handle browser restrictions
+            noMusic.currentTime = 0;
+            noMusic.volume = 1.0;
+            
+            console.log('Attempting to play audio...');
+            
+            // Try to play, handle browser restrictions
+            const playPromise = noMusic.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    console.log('Audio playing successfully!');
+                }).catch(error => {
+                    console.log('Audio playback failed:', error);
+                    // Try again with user interaction context
+                    setTimeout(() => {
+                        noMusic.play().catch(e => console.log('Second attempt failed:', e));
+                    }, 100);
+                });
+            }
+
+            const container = document.querySelector('.buttons');
+            const containerRect = container.getBoundingClientRect();
+
+            // Calculate new position
+            const maxX = containerRect.width - noBtn.offsetWidth - 20;
+            const maxY = 50;
+
+            const randomX = (Math.random() - 0.5) * 2 * maxX;
+            const randomY = (Math.random() - 0.5) * 2 * maxY;
+
+            noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            noBtn.style.position = 'relative';
+        }
+
+        // Yes button - fireworks and stop audio
+        yesBtn.addEventListener('click', () => {
+            // Stop audio when Yes is clicked
+            noMusic.pause();
+            noMusic.currentTime = 0;
+
+            // Hide letter and show celebration message with typewriter effect
+            letterContainer.style.display = 'none';
+            overlay.style.display = 'none';
+            celebrationContainer.classList.add('show');
+
+            // Start typewriter effect for celebration message
+            typeWriterCelebration();
+            
+            launchFireworks();
+        });
+
+        // Typewriter effect for celebration message
+        function typeWriterCelebration() {
+            const text = "Thank you so much! May Allah bless you! Eidi widi kuch nahi chahiye bas aapki duaein kaafi hain! 🌙✨";
+            const celebrationText = document.getElementById('celebrationText');
+            let charIndex = 0;
+            const typingDelay = 50;
+
+            function typeChar() {
+                if (charIndex < text.length) {
+                    celebrationText.textContent += text.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeChar, typingDelay);
+                }
+            }
+            typeChar();
+        }
+
+        // Stop audio when hovering over Yes button
+        yesBtn.addEventListener('mouseenter', () => {
+            noMusic.pause();
+        });
+
+        // Fireworks implementation
+        let particles = [];
+        let animationId;
+
+        function resizeCanvas() {
+            fireworksCanvas.width = window.innerWidth;
+            fireworksCanvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.velocity = {
+                    x: (Math.random() - 0.5) * 8,
+                    y: (Math.random() - 0.5) * 8
+                };
+                this.alpha = 1;
+                this.friction = 0.96;
+                this.gravity = 0.04;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.restore();
+            }
+
+            update() {
+                this.velocity.x *= this.friction;
+                this.velocity.y *= this.friction;
+                this.velocity.y += this.gravity;
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+                this.alpha -= 0.015;
+            }
+        }
+
+        function createFirework(x, y) {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffa500', '#ff69b4'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            for (let i = 0; i < 50; i++) {
+                particles.push(new Particle(x, y, color));
+            }
+        }
+
+        function animate() {
+            animationId = requestAnimationFrame(animate);
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, fireworksCanvas.width, fireworksCanvas.height);
+
+            particles.forEach((particle, index) => {
+                if (particle.alpha > 0) {
+                    particle.update();
+                    particle.draw();
+                } else {
+                    particles.splice(index, 1);
+                }
+            });
+        }
+
+        function launchFireworks() {
+            animate();
+            
+            // Launch multiple fireworks
+            let count = 0;
+            const interval = setInterval(() => {
+                const x = Math.random() * fireworksCanvas.width;
+                const y = Math.random() * fireworksCanvas.height * 0.5;
+                createFirework(x, y);
+                count++;
+                
+                if (count > 20) {
+                    clearInterval(interval);
+                }
+            }, 300);
+        }
+
+        // Keep launching fireworks occasionally
+        setInterval(() => {
+            if (celebrationContainer.classList.contains('show')) {
+                const x = Math.random() * fireworksCanvas.width;
+                const y = Math.random() * fireworksCanvas.height * 0.4;
+                createFirework(x, y);
+            }
+        }, 800);
+    </script>
+</body>
+</html>

@@ -2,13 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
     <title>Ramadan Mubarak! 🌙</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
         }
 
         body {
@@ -19,7 +30,10 @@
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow: hidden;
-            position: relative;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overscroll-behavior: none;
         }
 
         /* Shooting stars */
@@ -112,6 +126,7 @@
             font-size: 2.5rem;
             margin-bottom: 10px;
             text-shadow: 0 0 20px rgba(249, 215, 28, 0.5);
+            font-family: 'Dancing Script', cursive;
         }
 
         .welcome-text p {
@@ -319,13 +334,15 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            font-family: 'Dancing Script', cursive;
         }
 
         .letter p {
             color: #333;
-            line-height: 1.6;
-            font-size: 1rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
             margin-bottom: 12px;
+            font-family: 'Dancing Script', cursive;
         }
 
         .decorative {
@@ -345,6 +362,7 @@
             font-size: 1.1rem;
             margin-bottom: 15px;
             font-weight: 600;
+            font-family: 'Dancing Script', cursive;
         }
 
         .letter-content {
@@ -370,8 +388,11 @@
             border: none;
             border-radius: 25px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
             font-weight: 600;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            will-change: transform;
         }
 
         .btn-yes {
@@ -385,11 +406,22 @@
             box-shadow: 0 6px 20px rgba(17, 153, 142, 0.6);
         }
 
+        .btn-yes:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 10px rgba(17, 153, 142, 0.3);
+        }
+
         .btn-no {
             background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
             color: white;
             box-shadow: 0 4px 15px rgba(235, 51, 73, 0.4);
             position: relative;
+            transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.15s ease;
+        }
+
+        .btn-no:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 10px rgba(235, 51, 73, 0.3);
         }
 
         /* Fireworks Canvas */
@@ -459,21 +491,12 @@
             text-align: center;
             min-width: 300px;
             max-width: 90%;
+            font-family: 'Dancing Script', cursive;
+            line-height: 1.6;
         }
 
         .typewriter-cursor {
-            display: inline-block;
-            width: 3px;
-            height: 1.5rem;
-            background-color: #fff;
-            margin-left: 5px;
-            animation: blink 0.7s infinite;
-            vertical-align: middle;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+            display: none;
         }
 
         @keyframes popIn {
@@ -482,26 +505,366 @@
         }
 
         /* Responsive */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+            /* Adjust lanterns for mobile */
+            .lantern {
+                width: 40px;
+                height: 70px;
+            }
+
+            .lantern-left {
+                left: 5%;
+            }
+
+            .lantern-right {
+                right: 5%;
+            }
+
+            /* Welcome text */
+            .welcome-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .welcome-text p {
+                font-size: 1rem;
+            }
+
+            /* Crescent */
+            .crescent-top {
+                font-size: 3rem;
+            }
+
+            /* Moon */
+            .moon {
+                width: 50px;
+                height: 50px;
+                top: 20px;
+                right: 20px;
+            }
+
+            /* Envelope */
             .envelope {
-                width: 250px;
+                width: 260px;
                 height: 170px;
             }
 
             .envelope::before {
-                border-left-width: 125px;
-                border-right-width: 125px;
-                border-top-width: 90px;
+                border-left-width: 130px;
+                border-right-width: 130px;
+                border-top-width: 95px;
             }
 
             .envelope::after {
-                border-left-width: 125px;
-                border-right-width: 125px;
+                border-left-width: 130px;
+                border-right-width: 130px;
                 border-bottom-width: 85px;
             }
 
+            .envelope-label {
+                font-size: 1rem;
+            }
+
+            .click-hint {
+                font-size: 0.8rem;
+                bottom: -35px;
+            }
+
+            /* Letter */
+            .letter-container {
+                width: 95%;
+                padding: 0 10px;
+            }
+
             .letter {
-                padding: 25px;
+                padding: 20px;
+                border-radius: 10px;
+            }
+
+            .letter h1 {
+                font-size: 1.4rem;
+                gap: 5px;
+            }
+
+            .letter p {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+
+            .decorative {
+                font-size: 2rem;
+                margin: 10px 0;
+            }
+
+            .eidi-question {
+                font-size: 1rem;
+            }
+
+            .buttons {
+                flex-direction: column;
+                gap: 12px;
+                min-height: auto;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+                width: 100%;
+                max-width: 200px;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .btn:active {
+                transform: scale(0.95);
+            }
+
+            /* Celebration message */
+            .celebration-message {
+                padding: 20px 25px;
+                font-size: 1.1rem;
+                min-width: auto;
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Smaller lanterns */
+            .lantern {
+                width: 30px;
+                height: 50px;
+            }
+
+            .lantern-left {
+                left: 2%;
+                top: -10px;
+            }
+
+            .lantern-right {
+                right: 2%;
+                top: -10px;
+            }
+
+            /* Welcome text */
+            .welcome-text {
+                top: 12%;
+            }
+
+            .welcome-text h2 {
+                font-size: 1.4rem;
+            }
+
+            .welcome-text p {
+                font-size: 0.85rem;
+            }
+
+            /* Crescent */
+            .crescent-top {
+                font-size: 2.5rem;
+                top: 15px;
+            }
+
+            /* Moon */
+            .moon {
+                width: 40px;
+                height: 40px;
+                top: 10px;
+                right: 10px;
+            }
+
+            /* Envelope */
+            .envelope {
+                width: 220px;
+                height: 150px;
+            }
+
+            .envelope::before {
+                border-left-width: 110px;
+                border-right-width: 110px;
+                border-top-width: 80px;
+            }
+
+            .envelope::after {
+                border-left-width: 110px;
+                border-right-width: 110px;
+                border-bottom-width: 70px;
+            }
+
+            .envelope-label {
+                font-size: 0.85rem;
+            }
+
+            .click-hint {
+                font-size: 0.7rem;
+                bottom: -30px;
+            }
+
+            /* Letter */
+            .letter-container {
+                width: 95%;
+                max-width: none;
+            }
+
+            .letter {
+                padding: 15px 20px;
+                max-height: 85vh;
+            }
+
+            .letter h1 {
+                font-size: 1.2rem;
+            }
+
+            .letter p {
+                font-size: 0.85rem;
+                margin-bottom: 10px;
+            }
+
+            .decorative {
+                font-size: 1.5rem;
+                margin: 8px 0;
+            }
+
+            .eidi-section {
+                margin-top: 15px;
+                padding-top: 12px;
+            }
+
+            .eidi-question {
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+
+            /* Shooting stars - reduce for performance */
+            .shooting-star {
+                display: none;
+            }
+
+            /* Clouds - reduce for performance */
+            .cloud {
+                display: none;
+            }
+        }
+
+        /* Extra small devices */
+        @media (max-width: 360px) {
+            .welcome-text h2 {
+                font-size: 1.2rem;
+            }
+
+            .envelope {
+                width: 200px;
+                height: 140px;
+            }
+
+            .envelope::before {
+                border-left-width: 100px;
+                border-right-width: 100px;
+                border-top-width: 75px;
+            }
+
+            .envelope::after {
+                border-left-width: 100px;
+                border-right-width: 100px;
+                border-bottom-width: 65px;
+            }
+
+            .letter {
+                padding: 12px 15px;
+            }
+
+            .letter h1 {
+                font-size: 1.1rem;
+            }
+
+            .letter p {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Prevent zoom on double tap for iOS */
+        @media (hover: none) and (pointer: coarse) {
+            .btn {
+                min-height: 44px;
+            }
+
+            .envelope-container {
+                min-height: 44px;
+                min-width: 44px;
+            }
+        }
+
+        /* iPhone 15 / 15 Pro (393px × 852px) */
+        @media (max-width: 393px) and (min-height: 800px) {
+            .welcome-text {
+                top: 10%;
+            }
+
+            .welcome-text h2 {
+                font-size: 1.5rem;
+            }
+
+            .envelope {
+                width: 240px;
+                height: 160px;
+            }
+
+            .envelope::before {
+                border-left-width: 120px;
+                border-right-width: 120px;
+                border-top-width: 85px;
+            }
+
+            .envelope::after {
+                border-left-width: 120px;
+                border-right-width: 120px;
+                border-bottom-width: 75px;
+            }
+
+            .letter {
+                padding: 18px 22px;
+            }
+
+            .letter h1 {
+                font-size: 1.3rem;
+            }
+
+            .letter p {
+                font-size: 0.9rem;
+            }
+
+            .btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+
+        /* iPhone 15 Plus / 15 Pro Max (430px × 932px) */
+        @media (max-width: 430px) and (min-height: 900px) {
+            .welcome-text h2 {
+                font-size: 1.7rem;
+            }
+
+            .envelope {
+                width: 280px;
+                height: 180px;
+            }
+
+            .envelope::before {
+                border-left-width: 140px;
+                border-right-width: 140px;
+                border-top-width: 100px;
+            }
+
+            .envelope::after {
+                border-left-width: 140px;
+                border-right-width: 140px;
+                border-bottom-width: 90px;
+            }
+
+            .letter {
+                padding: 22px 26px;
             }
 
             .letter h1 {
@@ -511,13 +874,42 @@
             .letter p {
                 font-size: 1rem;
             }
+        }
+
+        /* Handle Dynamic Island / Notch - safe area insets */
+        @supports (padding-top: env(safe-area-inset-top)) {
+            .welcome-text {
+                padding-top: env(safe-area-inset-top);
+            }
+
+            .crescent-top {
+                top: calc(20px + env(safe-area-inset-top));
+            }
 
             .moon {
-                width: 50px;
-                height: 50px;
-                top: 20px;
-                right: 20px;
+                top: calc(50px + env(safe-area-inset-top));
+                right: calc(50px + env(safe-area-inset-right));
             }
+
+            .lantern-left {
+                left: calc(10% + env(safe-area-inset-left));
+            }
+
+            .lantern-right {
+                right: calc(10% + env(safe-area-inset-right));
+            }
+        }
+
+        /* Allow text selection in letter for copying */
+        .letter, .letter p, .letter h1, .celebration-message {
+            -webkit-user-select: text;
+            user-select: text;
+        }
+
+        /* Prevent text selection on other elements */
+        .envelope, .btn, .envelope-container {
+            -webkit-user-select: none;
+            user-select: none;
         }
     </style>
 </head>
@@ -602,11 +994,33 @@
     </div>
 
     <!-- Audio for No button -->
-    <audio id="noMusic" preload="auto" playsinline>
+    <audio id="noMusic" preload="auto" playsinline webkit-playsinline>
         <source src="./nhi.mp3" type="audio/mpeg">
     </audio>
 
     <script>
+        // iOS Safari: Handle viewport height properly
+        function setVH() {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        setVH();
+        window.addEventListener('resize', setVH);
+        window.addEventListener('orientationchange', setVH);
+
+        // iOS: Prevent double-tap zoom
+        document.addEventListener('dblclick', function(event) {
+            event.preventDefault();
+        }, { passive: false });
+
+        // iOS: Handle audio session
+        try {
+            const audio = new Audio();
+            audio.preload = 'auto';
+        } catch (e) {
+            console.log('Audio not supported');
+        }
+
         // Create stars
         function createStars() {
             const starsContainer = document.getElementById('stars');
@@ -759,14 +1173,19 @@
         // No button - run away
         noBtn.addEventListener('mouseover', moveButton);
         noBtn.addEventListener('mouseenter', moveButton);
+        // Touch support for mobile
+        noBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            moveButton();
+        });
 
         function moveButton() {
             // Play music - try multiple times to handle browser restrictions
             noMusic.currentTime = 0;
             noMusic.volume = 1.0;
-            
+
             console.log('Attempting to play audio...');
-            
+
             // Try to play, handle browser restrictions
             const playPromise = noMusic.play();
             if (playPromise !== undefined) {
@@ -784,9 +1203,10 @@
             const container = document.querySelector('.buttons');
             const containerRect = container.getBoundingClientRect();
 
-            // Calculate new position
-            const maxX = containerRect.width - noBtn.offsetWidth - 20;
-            const maxY = 50;
+            // Calculate new position - adjusted for mobile
+            const isMobile = window.innerWidth <= 768;
+            const maxX = isMobile ? containerRect.width - noBtn.offsetWidth - 10 : containerRect.width - noBtn.offsetWidth - 20;
+            const maxY = isMobile ? 30 : 50;
 
             const randomX = (Math.random() - 0.5) * 2 * maxX;
             const randomY = (Math.random() - 0.5) * 2 * maxY;
